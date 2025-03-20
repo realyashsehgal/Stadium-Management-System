@@ -1,0 +1,1 @@
+//Here this is admin login page simple ui showing input box for username and password isme database ka maamla hoga cuz humara admin login pass usme store hoga abhi temporary ek private variable bana lengeisme login hone ke baad ek admin screen class ka object bana ke call krna hai 
