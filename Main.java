@@ -1,47 +1,53 @@
-
-//This is going to be the main frame isme we will have the intro like name of the application, logo, current active events(optional), and login button 
-//is file mai code aisa hoga like ui, then button or fir unke functions call jo task hona hai like admin login wala button click hoga to admin class ka object banake uske method ko call krenge
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Image;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
+import java.awt.*;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 public class Main {
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Main frame");// This is the main frame
-        JLabel header_label = new JLabel("Staduim Mangement System", SwingConstants.CENTER);// This is header label
-        header_label.setFont(new Font("Ariel", Font.BOLD, 25));
+        // Creating the main application frame
+        JFrame frame = new JFrame("Stadium Management System");
+        frame.setSize(800, 500);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null); // Centers the frame on the screen
+        frame.setLayout(new BorderLayout()); // Using BorderLayout for better organization
 
-        ImageIcon logo = new ImageIcon("image.png");// logo mae imgae store kri is object mae
-        Image img = logo.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);// yae image ka naya object banaya
-                                                                                  // image resize krne ke liye
-        ImageIcon resized_log = new ImageIcon(img);// naya resized image icon banyaa idhar
-        JLabel imglabel = new JLabel(resized_log);// or idhar image ke liyue naya label
-        imglabel.setBorder(new EmptyBorder(0, 4, 0, 0));
+        // Header label displaying the application name
+        JLabel headerLabel = new JLabel("Stadium Management System", SwingConstants.CENTER);
+        headerLabel.setFont(new Font("Arial", Font.BOLD, 25));
+        headerLabel.setForeground(Color.WHITE); // Set text color for better visibility
 
-        // The panel below it will have logo, title etc thigns
-        JPanel heading_panel = new JPanel();
-        heading_panel.setBackground(Color.BLUE);// for setting background color
-        heading_panel.setPreferredSize(new Dimension(1000, 70));// setting size to take some sapce above
-        heading_panel.setLayout(new BorderLayout());// changin the layout type so more labels can fir inside
-        heading_panel.add(header_label, BorderLayout.EAST);// aliging the header label which have the title
-        heading_panel.add(imglabel, BorderLayout.WEST);
+        // Loading and resizing the logo image
+        ImageIcon logo = new ImageIcon("image.png"); // Ensure the image file is in the correct directory
+        Image img = logo.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+        ImageIcon resizedLogo = new ImageIcon(img);
 
-        // ADDING THINGS TO FRAME ITSELF
-        frame.setSize(1000, 800);
-        frame.add(heading_panel, BorderLayout.NORTH);
-        // frame.add(header_label, BorderLayout.NORTH);// This adds teh label to the
-        // frame
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);// It is a closing fucntion it means when click on close
-                                                             // button of frame it will close the progrm
-        frame.setLocationRelativeTo(null);// This aligns the frame to center of the screebn
+        // Creating a label to hold the logo image
+        JLabel imgLabel = new JLabel(resizedLogo);
+        imgLabel.setBorder(new EmptyBorder(0, 10, 0, 0)); // Adds padding for better spacing
+
+        // Creating the header panel to hold the logo and title
+        JPanel headingPanel = new JPanel(new BorderLayout());
+        headingPanel.setBackground(Color.BLUE); // Set background color of the header
+        headingPanel.setPreferredSize(new Dimension(1000, 70)); // Set preferred size of the header panel
+
+        // Adding components to the header panel
+        headingPanel.add(imgLabel, BorderLayout.WEST); // Logo aligned to the left
+        headingPanel.add(headerLabel, BorderLayout.CENTER); // Title centered
+
+        // Creating the login panel and positioning it at the bottom-left
+        AdminLogin loginPanel = new AdminLogin();
+        JPanel loginContainer = new JPanel(new BorderLayout());
+        loginContainer.add(loginPanel, BorderLayout.NORTH);
+
+        // Main content panel to organize components
+        JPanel contentPanel = new JPanel(new BorderLayout());
+        contentPanel.add(loginContainer, BorderLayout.WEST);
+
+        // Adding components to the frame
+        frame.add(headingPanel, BorderLayout.NORTH);
+        frame.add(contentPanel, BorderLayout.WEST);
+
+        // Making the frame visible
         frame.setVisible(true);
     }
 }
