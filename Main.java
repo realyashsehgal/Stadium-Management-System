@@ -32,7 +32,7 @@ public class Main {
 
         // Adding components to the header panel
         headingPanel.add(imgLabel, BorderLayout.WEST); // Logo aligned to the left
-        headingPanel.add(headerLabel, BorderLayout.CENTER); // Title centered
+        headingPanel.add(headerLabel, BorderLayout.EAST); // Title East
 
         // Creating the login panel and positioning it at the bottom-left
         AdminLogin loginPanel = new AdminLogin();
@@ -43,10 +43,18 @@ public class Main {
         JPanel contentPanel = new JPanel(new BorderLayout());
         contentPanel.add(loginContainer, BorderLayout.WEST);
 
+        JPanel calpanel = new JPanel(new BorderLayout());
+        calpanel.setPreferredSize(new Dimension(300, 200));
+        calpanel.setBorder(BorderFactory.createLineBorder(Color.BLACK)); // Make it visible
+        JLabel callabel = new JLabel("Calendar Panel", SwingConstants.CENTER);
+        callabel.setOpaque(true);
+        callabel.setBackground(Color.BLUE);
+        calpanel.add(callabel, BorderLayout.CENTER);
+
         // Adding components to the frame
         frame.add(headingPanel, BorderLayout.NORTH);
         frame.add(contentPanel, BorderLayout.WEST);
-
+        frame.add(calpanel, BorderLayout.EAST);
         // Making the frame visible
         frame.setVisible(true);
     }
