@@ -5,6 +5,7 @@ import javax.swing.*;
 
 public class AdminLogin extends JPanel {
     public AdminLogin() {
+        AdminScreen adscreen = new AdminScreen();
         // Setting layout for login panel
         this.setLayout(new GridBagLayout());
         this.setPreferredSize(new Dimension(500, 200)); // Setting panel size
@@ -48,7 +49,8 @@ public class AdminLogin extends JPanel {
                 String password = new String(passField.getPassword());
 
                 if (username.equals("admin") && password.equals("password")) {
-                    JOptionPane.showMessageDialog(null, "Login Successful!");
+                    // JOptionPane.showMessageDialog(null, "Login Successful!");
+                    adscreen.main(null);
                 } else {
                     JOptionPane.showMessageDialog(null, "Invalid Credentials", "Error", JOptionPane.ERROR_MESSAGE);
                 }
