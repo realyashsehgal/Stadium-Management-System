@@ -1,77 +1,84 @@
 package src;
+
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 public class Main {
     public static void main(String[] args) {
-        // Creating the main application frame
+        // Frame setup
         JFrame frame = new JFrame("Stadium Management System");
-        frame.setSize(800, 500);
+        frame.setSize(900, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setLayout(new BorderLayout());
 
-        // Header label
+        // Header
         JLabel headerLabel = new JLabel("Stadium Management System", SwingConstants.CENTER);
         headerLabel.setFont(new Font("Arial", Font.BOLD, 25));
         headerLabel.setForeground(Color.WHITE);
 
-        // Loading and resizing the logo image
         ImageIcon logo = new ImageIcon("image.png");
         Image img = logo.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-        ImageIcon resizedLogo = new ImageIcon(img);
-
-        // Logo label
-        JLabel imgLabel = new JLabel(resizedLogo);
+        JLabel imgLabel = new JLabel(new ImageIcon(img));
         imgLabel.setBorder(new EmptyBorder(0, 10, 0, 0));
 
-        // Header panel
         JPanel headingPanel = new JPanel(new BorderLayout());
         headingPanel.setBackground(Color.BLUE);
         headingPanel.setPreferredSize(new Dimension(1000, 70));
-
         headingPanel.add(imgLabel, BorderLayout.WEST);
-        headingPanel.add(headerLabel, BorderLayout.EAST);
+        headingPanel.add(headerLabel, BorderLayout.CENTER);
 
-        // Login panel inside a container
+        // GridBagLayout main panel
+        JPanel mainPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5); // spacing
+
+        // Login Panel
         AdminLogin loginPanel = new AdminLogin();
-        JPanel loginContainer = new JPanel(new BorderLayout());
-        loginContainer.add(loginPanel, BorderLayout.NORTH);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 0.5;
+        gbc.weighty = 0.3;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        mainPanel.add(loginPanel, gbc);
 
-        // Content panel (main content)
-        JPanel contentPanel = new JPanel(new BorderLayout());
-        contentPanel.add(loginContainer, BorderLayout.WEST);
-
-        // Calendar panel
-        JPanel calpanel = new JPanel(new BorderLayout());
-        calpanel.setPreferredSize(new Dimension(282, 200));
-        calpanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        JLabel callabel = new JLabel("Calendar Panel", SwingConstants.CENTER);
-        callabel.setOpaque(true);
-        callabel.setBackground(Color.BLUE);
-        calpanel.add(callabel, BorderLayout.CENTER);
-
-        // Event list panel
+        // Event List Panel
         JPanel evlist = new JPanel(new BorderLayout());
         evlist.setPreferredSize(new Dimension(300, 190));
         evlist.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         JLabel evlabel = new JLabel("Event List", SwingConstants.CENTER);
         evlabel.setOpaque(true);
         evlabel.setBackground(Color.BLUE);
+        evlabel.setForeground(Color.WHITE);
         evlist.add(evlabel, BorderLayout.CENTER);
 
-        // **New Panel to align contentPanel (Top-Left) & evlist (Bottom-Left)**
-        JPanel westPanel = new JPanel(new BorderLayout());
-        westPanel.add(contentPanel, BorderLayout.CENTER);
-        westPanel.add(evlist, BorderLayout.SOUTH);
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.weighty = 0.3;
+        mainPanel.add(evlist, gbc);
 
-        // Adding components to the frame
+        // Calendar Panel
+        JPanel calpanel = new JPanel(new BorderLayout());
+        calpanel.setPreferredSize(new Dimension(282, 200));
+        calpanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        JLabel callabel = new JLabel("Calendar Panel", SwingConstants.CENTER);
+        callabel.setOpaque(true);
+        callabel.setBackground(Color.BLUE);
+        callabel.setForeground(Color.WHITE);
+        calpanel.add(callabel, BorderLayout.CENTER);
+
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.gridheight = 2;
+        gbc.weightx = 0.5;
+        gbc.fill = GridBagConstraints.BOTH;
+        mainPanel.add(calpanel, gbc);
+
+        // Assemble it all
         frame.add(headingPanel, BorderLayout.NORTH);
-        frame.add(westPanel, BorderLayout.WEST); // Use westPanel instead of individual panels
-        frame.add(calpanel, BorderLayout.EAST);
+        frame.add(mainPanel, BorderLayout.CENTER);
 
-        // Making the frame visible
         frame.setVisible(true);
     }
 }

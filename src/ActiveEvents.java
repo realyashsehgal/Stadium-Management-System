@@ -1,4 +1,5 @@
 package src;
+
 import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
@@ -6,7 +7,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 public class ActiveEvents extends JPanel {
-    public ActiveEvents() {
+    public ActiveEvents(int col1, int col2, int col3) {
         setLayout(new BorderLayout());
 
         // Table model with column names
@@ -27,9 +28,9 @@ public class ActiveEvents extends JPanel {
         tableModel.setColumnIdentifiers(columnNames);
 
         // Set fixed column widths
-        table.getColumnModel().getColumn(0).setPreferredWidth(150); // ID
-        table.getColumnModel().getColumn(1).setPreferredWidth(400); // Event Name
-        table.getColumnModel().getColumn(2).setPreferredWidth(190); // Date
+        table.getColumnModel().getColumn(0).setPreferredWidth(col1); // ID
+        table.getColumnModel().getColumn(1).setPreferredWidth(col2); // Event Name
+        table.getColumnModel().getColumn(2).setPreferredWidth(col3); // Date
 
         // Sample data (without a database)
         List<Object[]> events = Arrays.asList(

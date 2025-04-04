@@ -1,10 +1,11 @@
 package src;
+
 import java.awt.*;
-import javax.swing.BorderFactory;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.TitledBorder;
 
 // yae admin screen hogi isme current active events with date and time show
 // honge and ek button hoga add events jo naya frame open krega jisme isme bhi
@@ -13,6 +14,8 @@ import javax.swing.border.TitledBorder;
 // hai to us button pe click hoga simialrly new class pe jayenge
 
 public class AdminScreen {
+    private static AddEvents addevents = new AddEvents();
+
     public static void main(String[] args) {
         JFrame frame = new JFrame("Admin Screen");
         frame.setSize(800, 600); // Increased size to fit the table properly
@@ -27,22 +30,24 @@ public class AdminScreen {
         gbc.insets = new Insets(10, 10, 10, 10);
 
         // Active Events Panel (Top Left)
-        JPanel activeEventPanel = new JPanel(new BorderLayout());
-        activeEventPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),
-                "Active Events", TitledBorder.CENTER, TitledBorder.TOP));
-        activeEventPanel.setPreferredSize(new Dimension(400, 100)); // Updated size
+        // JPanel activeEventPanel = new JPanel(new BorderLayout());
+        // activeEventPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),
+        // "Active Events", TitledBorder.CENTER, TitledBorder.TOP));
+        // activeEventPanel.setPreferredSize(new Dimension(400, 100)); // Updated size
 
-        // Adding ActiveEvents Table Inside This Panel
-        ActiveEvents activeevents = new ActiveEvents();
-        activeevents.setPreferredSize(new Dimension(400, 100)); // Restrict table size
-        activeEventPanel.add(activeevents, BorderLayout.CENTER);
+        // // Adding ActiveEvents Table Inside This Panel
+        // ActiveEvents activeevents = new ActiveEvents();
+        // activeevents.setPreferredSize(new Dimension(400, 100)); // Restrict table
+        // size
+        // activeEventPanel.add(activeevents, BorderLayout.CENTER);
 
-        // Add to mainPanel
+        // // Add to mainPanel
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 1;
         gbc.weighty = 0.6; // More weight to this panel
         gbc.fill = GridBagConstraints.BOTH;
+        ActiveEventPanel activeEventPanel = new ActiveEventPanel(660, 340);
         mainPanel.add(activeEventPanel, gbc);
 
         // Buttons Panel (Below the Active Events Table)
@@ -58,10 +63,19 @@ public class AdminScreen {
         buttonpanel.add(addEventButton);
         buttonpanel.add(makeReservationButton);
 
+        addEventButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addevents.main(); // Pass an empty String array as required by the main method
+            }
+
+        });
+
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.weighty = 0.2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.fill = GridBagConstraints.VERTICAL;
         mainPanel.add(buttonpanel, gbc);
 
         frame.setVisible(true);
