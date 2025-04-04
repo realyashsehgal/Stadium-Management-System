@@ -53,21 +53,6 @@ public class ActiveEvents extends JPanel {
                 new Object[] { 17, "Sports Championship", "2025-05-05" },
                 new Object[] { 18, "Sports Championship", "2025-05-05" },
                 new Object[] { 18, "Sports Championship", "2025-05-05" },
-                new Object[] { 18, "Sports Championship", "2025-05-05" },
-                new Object[] { 18, "Sports Championship", "2025-05-05" },
-                new Object[] { 18, "Sports Championship", "2025-05-05" },
-                new Object[] { 18, "Sports Championship", "2025-05-05" },
-                new Object[] { 18, "Sports Championship", "2025-05-05" },
-                new Object[] { 18, "Sports Championship", "2025-05-05" },
-                new Object[] { 18, "Sports Championship", "2025-05-05" },
-                new Object[] { 18, "Sports Championship", "2025-05-05" },
-                new Object[] { 18, "Sports Championship", "2025-05-05" },
-                new Object[] { 18, "Sports Championship", "2025-05-05" },
-                new Object[] { 18, "Sports Championship", "2025-05-05" },
-                new Object[] { 18, "Sports Championship", "2025-05-05" },
-                new Object[] { 18, "Sports Championship", "2025-05-05" },
-                new Object[] { 18, "Sports Championship", "2025-05-05" },
-                new Object[] { 18, "Sports Championship", "2025-05-05" },
                 new Object[] { 18, "Sports Championship", "2025-05-05" });
 
         // Add data to the table
