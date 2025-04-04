@@ -1,3 +1,4 @@
+package src;
 import java.awt.*;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
