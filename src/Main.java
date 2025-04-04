@@ -47,17 +47,17 @@ public class Main {
         JPanel evlist = new JPanel(new BorderLayout());
         evlist.setPreferredSize(new Dimension(300, 190));
         evlist.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        JLabel evlabel = new JLabel("Event List", SwingConstants.CENTER);
-        evlabel.setOpaque(true);
-        evlabel.setBackground(Color.BLUE);
-        evlabel.setForeground(Color.WHITE);
-        evlist.add(evlabel, BorderLayout.CENTER);
+        // JLabel evlabel = new JLabel("Event List", SwingConstants.CENTER);
+        // evlabel.setOpaque(true);
+        // evlabel.setBackground(Color.BLUE);
+        // evlabel.setForeground(Color.WHITE);
+        // evlist.add(evlabel, BorderLayout.CENTER);
 
+        ActiveEventPanel activeEventPanel = new ActiveEventPanel(500, 250);
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.weighty = 0.3;
-        mainPanel.add(evlist, gbc);
-
+        mainPanel.add(activeEventPanel, gbc);
         // Calendar Panel
         JPanel calpanel = new JPanel(new BorderLayout());
         calpanel.setPreferredSize(new Dimension(282, 200));
