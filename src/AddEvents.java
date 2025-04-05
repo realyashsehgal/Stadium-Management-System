@@ -37,11 +37,11 @@ public class AddEvents {
         JSpinner datespinner = new JSpinner(model);
         JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(datespinner, "yyyy-MM-dd");
         datespinner.setEditor(dateEditor);
-        gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridx = 2;
+        gbc.gridy = 0;
         frame.add(eventdate, gbc);
 
-        gbc.gridy = 3;
+        gbc.gridy = 1;
         frame.add(datespinner, gbc);
         // Event Time Label
         JLabel eventtime = new JLabel("Please enter the time for the event");
@@ -59,7 +59,7 @@ public class AddEvents {
         JSpinner endTimeSpinner = new JSpinner(endTimeModel);
         JSpinner.DateEditor endTimeEditor = new JSpinner.DateEditor(endTimeSpinner, "HH:mm");
         endTimeSpinner.setEditor(endTimeEditor);
-
+        gbc.gridx = 0;
         // Add to layout
         gbc.gridy = 4;
         frame.add(eventtime, gbc);
@@ -117,12 +117,18 @@ public class AddEvents {
                 }
             }
         });
-
-        gbc.gridy = 9;
+        gbc.gridx = 2;
+        gbc.gridy = 4;
         frame.add(seats, gbc);
 
-        gbc.gridy = 10;
+        gbc.gridy = 5;
         frame.add(seatscount, gbc);
+
+        JButton add = new JButton("Add event");
+        add.setPreferredSize(new Dimension(180, 100));
+        gbc.gridx = 1;
+        gbc.gridy = 9;
+        frame.add(add, gbc);
 
         frame.setVisible(true);
     }
