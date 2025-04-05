@@ -66,7 +66,7 @@ public class AdminScreen {
         addEventButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                addevents.main(); // Pass an empty String array as required by the main method
+                addevents.main(null); // Call the main method using the instance
             }
 
         });
