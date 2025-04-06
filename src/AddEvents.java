@@ -26,11 +26,9 @@ public class AddEvents {
         // Event Name
         JLabel eventname = new JLabel("Please enter the name of the event");
         JTextField eventnamefield = new JTextField(15);
-
         gbc.gridx = 0;
         gbc.gridy = 0;
         frame.add(eventname, gbc);
-
         gbc.gridy = 1;
         frame.add(eventnamefield, gbc);
 
@@ -43,46 +41,38 @@ public class AddEvents {
         gbc.gridx = 2;
         gbc.gridy = 0;
         frame.add(eventdate, gbc);
-
         gbc.gridy = 1;
         frame.add(datespinner, gbc);
+
         // Event Time Label
         JLabel eventtime = new JLabel("Please enter the time for the event");
-
-        // Start Time
         JLabel startTimeLabel = new JLabel("Start Time:");
         SpinnerDateModel startTimeModel = new SpinnerDateModel();
         JSpinner startTimeSpinner = new JSpinner(startTimeModel);
         JSpinner.DateEditor startTimeEditor = new JSpinner.DateEditor(startTimeSpinner, "HH:mm");
         startTimeSpinner.setEditor(startTimeEditor);
 
-        // End Time
         JLabel endTimeLabel = new JLabel("End Time:");
         SpinnerDateModel endTimeModel = new SpinnerDateModel();
         JSpinner endTimeSpinner = new JSpinner(endTimeModel);
         JSpinner.DateEditor endTimeEditor = new JSpinner.DateEditor(endTimeSpinner, "HH:mm");
         endTimeSpinner.setEditor(endTimeEditor);
+
         gbc.gridx = 0;
-        // Add to layout
         gbc.gridy = 4;
         frame.add(eventtime, gbc);
-
         gbc.gridy = 5;
         frame.add(startTimeLabel, gbc);
-
         gbc.gridy = 6;
         frame.add(startTimeSpinner, gbc);
-
         gbc.gridy = 7;
         frame.add(endTimeLabel, gbc);
-
         gbc.gridy = 8;
         frame.add(endTimeSpinner, gbc);
 
+        // Seat Count
         JLabel seats = new JLabel("Please enter the number of seats available");
         JTextField seatscount = new JTextField(5);
-
-        // Digit-only and value check (max 40000)
         ((AbstractDocument) seatscount.getDocument()).setDocumentFilter(new DocumentFilter() {
             @Override
             public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr)
@@ -95,7 +85,7 @@ public class AddEvents {
                             super.insertString(fb, offset, string, attr);
                         }
                     } catch (NumberFormatException e) {
-                        // Do nothing, invalid input
+                        // Do nothing
                     }
                 }
             }
@@ -115,37 +105,59 @@ public class AddEvents {
                             super.replace(fb, offset, length, text, attrs);
                         }
                     } catch (NumberFormatException e) {
-                        // Invalid number
+                        // Do nothing
                     }
                 }
             }
         });
+
         gbc.gridx = 2;
         gbc.gridy = 4;
         frame.add(seats, gbc);
         gbc.gridy = 5;
         frame.add(seatscount, gbc);
 
+        // Add Button
         JButton add = new JButton("Add event");
         add.setPreferredSize(new Dimension(180, 100));
         gbc.gridx = 1;
         gbc.gridy = 9;
         frame.add(add, gbc);
 
+        // Button Action
         add.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String eventname = eventnamefield.getText();
-                Date eventdate = (Date) datespinner.getValue();
-                Date starttime = (Date) startTimeSpinner.getValue();
-                Date endtime = (Date) endTimeSpinner.getValue();
-                int seat_count = Integer.parseInt(seatscount.getText());
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+                try {
+                    String name = eventnamefield.getText();
+                    Date date = (Date) datespinner.getValue();
+                    Date start = (Date) startTimeSpinner.getValue();
+                    Date end = (Date) endTimeSpinner.getValue();
+                    String seatsText = seatscount.getText();
 
-                System.out.println("Event Date: " + dateFormat.format(eventdate));
-                System.out.println("Start Time: " + timeFormat.format(starttime));
+                    // Input validation
+                    if (name == null || name.trim().isEmpty() || date == null || start == null || end == null
+                            || seatsText.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, " Please fill in all fields properly.");
+                        return;
+                    }
 
+                    int seat_count = Integer.parseInt(seatsText);
+
+                    // Format for display
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+                    DbAddEvents dbadd = new DbAddEvents(name, date, start, end, seat_count);
+                    // System.out.println("Event Name: " + name);
+                    // System.out.println("Event Date: " + dateFormat.format(date));
+                    // System.out.println("Start Time: " + timeFormat.format(start));
+                    // System.out.println("End Time: " + timeFormat.format(end));
+                    // System.out.println("Seat Count: " + seat_count);
+
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Something went wrong: " + ex.getMessage());
+                }
             }
         });
 
