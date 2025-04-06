@@ -123,7 +123,6 @@ public class AddEvents {
         gbc.gridx = 2;
         gbc.gridy = 4;
         frame.add(seats, gbc);
-
         gbc.gridy = 5;
         frame.add(seatscount, gbc);
 
