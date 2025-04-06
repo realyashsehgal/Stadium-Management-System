@@ -3,7 +3,6 @@ package src;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.*;
 import javax.swing.text.AbstractDocument;
@@ -129,34 +128,27 @@ public class AddEvents {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    String name = eventnamefield.getText();
-                    Date date = (Date) datespinner.getValue();
-                    Date start = (Date) startTimeSpinner.getValue();
-                    Date end = (Date) endTimeSpinner.getValue();
-                    String seatsText = seatscount.getText();
+                    String eventname = eventnamefield.getText();
+                    Date eventDate = (Date) datespinner.getValue();
+                    Date startTime = (Date) startTimeSpinner.getValue();
+                    Date endTime = (Date) endTimeSpinner.getValue();
+                    int seatCount = Integer.parseInt(seatscount.getText());
 
-                    // Input validation
-                    if (name == null || name.trim().isEmpty() || date == null || start == null || end == null
-                            || seatsText.isEmpty()) {
-                        JOptionPane.showMessageDialog(null, " Please fill in all fields properly.");
+                    if (startTime.after(endTime) || startTime.equals(endTime)) {
+                        JOptionPane.showMessageDialog(null, "Start time must be before end time!");
                         return;
                     }
+                    DbManager newEvent = new DbManager(eventname, eventDate, startTime, endTime, seatCount);
 
-                    int seat_count = Integer.parseInt(seatsText);
-
-                    // Format for display
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                    SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
-                    DbAddEvents dbadd = new DbAddEvents(name, date, start, end, seat_count);
-                    // System.out.println("Event Name: " + name);
-                    // System.out.println("Event Date: " + dateFormat.format(date));
-                    // System.out.println("Start Time: " + timeFormat.format(start));
-                    // System.out.println("End Time: " + timeFormat.format(end));
-                    // System.out.println("Seat Count: " + seat_count);
-
+                    if (newEvent.isTimeConflict()) {
+                        JOptionPane.showMessageDialog(null, "⚠️ Time conflict: Another event overlaps!");
+                    } else {
+                        newEvent.insertEvent();
+                        JOptionPane.showMessageDialog(null, "🎉 Event added successfully!");
+                    }
                 } catch (Exception ex) {
                     ex.printStackTrace();
-                    JOptionPane.showMessageDialog(null, "Something went wrong: " + ex.getMessage());
+                    JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
                 }
             }
         });
