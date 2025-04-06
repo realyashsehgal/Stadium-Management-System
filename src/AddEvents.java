@@ -1,6 +1,9 @@
 package src;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.*;
 import javax.swing.text.AbstractDocument;
@@ -129,6 +132,23 @@ public class AddEvents {
         gbc.gridx = 1;
         gbc.gridy = 9;
         frame.add(add, gbc);
+
+        add.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String eventname = eventnamefield.getText();
+                Date eventdate = (Date) datespinner.getValue();
+                Date starttime = (Date) startTimeSpinner.getValue();
+                Date endtime = (Date) endTimeSpinner.getValue();
+                int seat_count = Integer.parseInt(seatscount.getText());
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+
+                System.out.println("Event Date: " + dateFormat.format(eventdate));
+                System.out.println("Start Time: " + timeFormat.format(starttime));
+
+            }
+        });
 
         frame.setVisible(true);
     }
