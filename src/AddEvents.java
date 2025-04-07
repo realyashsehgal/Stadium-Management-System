@@ -3,6 +3,8 @@ package src;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import javax.swing.*;
 import javax.swing.text.AbstractDocument;
@@ -31,7 +33,7 @@ public class AddEvents {
         gbc.gridy = 1;
         frame.add(eventnamefield, gbc);
 
-        // Event Date
+        // Event LocalDate
         JLabel eventdate = new JLabel("Please enter the date of the event");
         SpinnerDateModel model = new SpinnerDateModel(new Date(), null, null, java.util.Calendar.DAY_OF_MONTH);
         JSpinner datespinner = new JSpinner(model);
@@ -129,12 +131,18 @@ public class AddEvents {
             public void actionPerformed(ActionEvent e) {
                 try {
                     String eventname = eventnamefield.getText();
-                    Date eventDate = (Date) datespinner.getValue();
-                    Date startTime = (Date) startTimeSpinner.getValue();
-                    Date endTime = (Date) endTimeSpinner.getValue();
+                    Date date = (Date) datespinner.getValue();
+                    LocalDate eventDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                    Date date1 = (Date) startTimeSpinner.getValue();
+                    LocalDate startTime = date1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                    Date date2 = (Date) datespinner.getValue();
+                    LocalDate endTime = date2.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                    // LocalDate eventDate = (LocalDate) datespinner.getValue();
+                    // LocalDate startTime = (LocalDate) startTimeSpinner.getValue();
+                    // LocalDate endTime = (LocalDate) endTimeSpinner.getValue();
                     int seatCount = Integer.parseInt(seatscount.getText());
 
-                    if (startTime.after(endTime) || startTime.equals(endTime)) {
+                    if (startTime.isAfter(endTime) || startTime.equals(endTime)) {
                         JOptionPane.showMessageDialog(null, "Start time must be before end time!");
                         return;
                     }
