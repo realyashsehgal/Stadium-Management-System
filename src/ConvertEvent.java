@@ -1,15 +1,16 @@
 package src;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class ConvertEvent {
     private String name;
     private LocalDate date;
-    private LocalDate start;
-    private LocalDate end;
+    private LocalTime start;
+    private LocalTime end;
     private int seats;
 
-    public ConvertEvent(String name, LocalDate date, LocalDate start, LocalDate end, int seats) {
+    public ConvertEvent(String name, LocalDate date, LocalTime start, LocalTime end, int seats) {
         this.name = name;
         this.date = date;
         this.start = start;
@@ -25,11 +26,11 @@ public class ConvertEvent {
         return date;
     }
 
-    public LocalDate getStart() {
+    public LocalTime getStart() {
         return start;
     }
 
-    public LocalDate getEnd() {
+    public LocalTime getEnd() {
         return end;
     }
 

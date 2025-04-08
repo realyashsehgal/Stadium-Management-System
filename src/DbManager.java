@@ -2,16 +2,21 @@ package src;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DbManager {
     String eventname;
     LocalDate eventdate;
-    LocalDate starttime;
-    LocalDate endtime;
+    LocalTime starttime;
+    LocalTime endtime;
     int seatcount;
     public List<ConvertEvent> existingEvents = new ArrayList<>();
+
+    public DbManager() {
+
+    }
 
     public void fetchdata() {
         try {
@@ -22,8 +27,8 @@ public class DbManager {
             while (rs.next()) {
                 String name = rs.getString("name");
                 LocalDate date = rs.getDate("event_date").toLocalDate();
-                LocalDate start = rs.getDate("start_time").toLocalDate();
-                LocalDate end = rs.getDate("end_time").toLocalDate();
+                LocalTime start = rs.getTime("start_time").toLocalTime();
+                LocalTime end = rs.getTime("end_time").toLocalTime();
                 int seats = rs.getInt("seats");
 
                 ConvertEvent event = new ConvertEvent(name, date, start, end, seats);
@@ -35,7 +40,7 @@ public class DbManager {
         }
     }
 
-    public DbManager(String eventname, LocalDate eventdate, LocalDate starttime, LocalDate endtime, int seatcount) {
+    public DbManager(String eventname, LocalDate eventdate, LocalTime starttime, LocalTime endtime, int seatcount) {
         this.eventname = eventname;
         this.eventdate = eventdate;
         this.starttime = starttime;
@@ -58,7 +63,25 @@ public class DbManager {
         return false;
     }
 
-    public void insertEvent() {
+    public void insertEvent() throws SQLException {
+        Connection conn = DbConnection.getConnection();
+        String query = "INSERT INTO events (name, event_date, start_time, end_time, seats) VALUES (?, ?, ?, ?, ?)";
+
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setString(1, eventname);
+            stmt.setDate(2, java.sql.Date.valueOf(eventdate));
+            stmt.setTime(3, java.sql.Time.valueOf(starttime));
+            stmt.setTime(4, java.sql.Time.valueOf(endtime));
+            stmt.setInt(5, seatcount);
+
+            int rows = stmt.executeUpdate();
+            System.out.println(rows + " row(s) inserted successfully.");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println("Failed to insert data into the database.");
+        }
 
     }
 }

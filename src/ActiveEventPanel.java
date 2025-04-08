@@ -15,7 +15,7 @@ public class ActiveEventPanel extends JPanel {
         activeEventPanel.setPreferredSize(new Dimension(width, height)); // Updated size
 
         // Adding ActiveEvents Table Inside This Panel
-        ActiveEvents activeevents = new ActiveEvents(width / 3, width / 3, width / 3);
+        ActiveEvents activeevents = new ActiveEvents(width / 5, width / 5, width / 5, width / 5, width / 5);
         activeevents.setPreferredSize(new Dimension(width, height)); // Restrict
         // table size
         activeEventPanel.add(activeevents, BorderLayout.CENTER);

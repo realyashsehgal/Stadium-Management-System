@@ -1,13 +1,11 @@
 package src;
 
 import java.awt.*;
-import java.util.Arrays;
-import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 public class ActiveEvents extends JPanel {
-    public ActiveEvents(int col1, int col2, int col3) {
+    public ActiveEvents(int col1, int col2, int col3, int col4, int col5) {
         setLayout(new BorderLayout());
 
         // Table model with column names
@@ -24,40 +22,29 @@ public class ActiveEvents extends JPanel {
         add(scrollPane, BorderLayout.CENTER);
 
         // Set column headers
-        String[] columnNames = { "ID", "Event Name", "Date" };
+        String[] columnNames = { "ID", "Event Name", "Date", "haha", "lala" };
         tableModel.setColumnIdentifiers(columnNames);
 
         // Set fixed column widths
         table.getColumnModel().getColumn(0).setPreferredWidth(col1); // ID
         table.getColumnModel().getColumn(1).setPreferredWidth(col2); // Event Name
         table.getColumnModel().getColumn(2).setPreferredWidth(col3); // Date
-
-        // Sample data (without a database)
-        List<Object[]> events = Arrays.asList(
-                new Object[] { 1, "Music Concert", "2025-04-10" },
-                new Object[] { 2, "Tech Conference", "2025-04-15" },
-                new Object[] { 3, "Art Exhibition", "2025-04-20" },
-                new Object[] { 4, "Food Festival", "2025-04-25" },
-                new Object[] { 5, "Film Screening", "2025-04-30" },
-                new Object[] { 6, "Sports Championship", "2025-05-05" },
-                new Object[] { 7, "Science Fair", "2025-05-10" },
-                new Object[] { 8, "Sports Championship", "2025-05-05" },
-                new Object[] { 9, "Sports Championship", "2025-05-05" },
-                new Object[] { 10, "Sports Championship", "2025-05-05" },
-                new Object[] { 11, "Sports Championship", "2025-05-05" },
-                new Object[] { 12, "Sports Championship", "2025-05-05" },
-                new Object[] { 13, "Sports Championship", "2025-05-05" },
-                new Object[] { 14, "Sports Championship", "2025-05-05" },
-                new Object[] { 15, "Sports Championship", "2025-05-05" },
-                new Object[] { 16, "Sports Championship", "2025-05-05" },
-                new Object[] { 17, "Sports Championship", "2025-05-05" },
-                new Object[] { 18, "Sports Championship", "2025-05-05" },
-                new Object[] { 18, "Sports Championship", "2025-05-05" },
-                new Object[] { 18, "Sports Championship", "2025-05-05" });
-
+        table.getColumnModel().getColumn(3).setPreferredWidth(col4); // Date
+        table.getColumnModel().getColumn(4).setPreferredWidth(col5); // Date
+        DbManager db = new DbManager();
+        db.fetchdata();
+        Object object;
         // Add data to the table
-        for (Object[] event : events) {
-            tableModel.addRow(event);
+        for (ConvertEvent event : db.existingEvents) {
+            Object[] rowData = new Object[] {
+                    event.getName(),
+                    event.getDate(),
+                    event.getStart(),
+                    event.getEnd(),
+                    event.getSeats()
+            };
+            System.out.println(rowData.toString());
+            tableModel.addRow(rowData);
         }
     }
 }

@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Date;
 import javax.swing.*;
@@ -134,15 +135,16 @@ public class AddEvents {
                     Date date = (Date) datespinner.getValue();
                     LocalDate eventDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                     Date date1 = (Date) startTimeSpinner.getValue();
-                    LocalDate startTime = date1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                    Date date2 = (Date) datespinner.getValue();
-                    LocalDate endTime = date2.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                    LocalTime startTime = date1.toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
+                    Date date2 = (Date) endTimeSpinner.getValue();
+                    LocalTime endTime = date2.toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
                     // LocalDate eventDate = (LocalDate) datespinner.getValue();
                     // LocalDate startTime = (LocalDate) startTimeSpinner.getValue();
                     // LocalDate endTime = (LocalDate) endTimeSpinner.getValue();
                     int seatCount = Integer.parseInt(seatscount.getText());
 
                     if (startTime.isAfter(endTime) || startTime.equals(endTime)) {
+                        System.out.println(startTime + "   " + endTime);
                         JOptionPane.showMessageDialog(null, "Start time must be before end time!");
                         return;
                     }
