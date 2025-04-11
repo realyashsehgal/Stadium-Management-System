@@ -20,7 +20,7 @@ public class AdminScreen {
         JFrame frame = new JFrame("Admin Screen");
         frame.setSize(800, 600); // Increased size to fit the table properly
         frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Use GridBagLayout
         JPanel mainPanel = new JPanel(new GridBagLayout());

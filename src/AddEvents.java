@@ -18,7 +18,7 @@ public class AddEvents {
     public static void main(String[] Args) {
         JFrame frame = new JFrame();
         frame.setSize(800, 500);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setLayout(new GridBagLayout());
 
