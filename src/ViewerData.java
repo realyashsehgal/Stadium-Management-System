@@ -3,12 +3,13 @@ package src;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 public class ViewerData {
-    public static void main(String[] args) {
+    public void main(int avseats) {
         JFrame frame = new JFrame();
         frame.setSize(900, 600);
         frame.setLocationRelativeTo(null);
@@ -40,6 +41,14 @@ public class ViewerData {
         gbc.gridy = 3;
         frame.add(emailfield, gbc);
 
+        String[] paytype = { "Cash", "Online" };
+        JLabel paymenttype = new JLabel("Please select a payment type");
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        frame.add(paymenttype, gbc);
+        JComboBox<String> paymentypedropdown = new JComboBox<>(paytype);
+        gbc.gridy = 3;
+        frame.add(paymentypedropdown, gbc);
         frame.setVisible(true);
 
     }
