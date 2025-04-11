@@ -25,13 +25,14 @@ public class DbManager {
             ResultSet rs = stmt.executeQuery("SELECT * FROM events;");
 
             while (rs.next()) {
+                int id = rs.getInt("id");
                 String name = rs.getString("name");
                 LocalDate date = rs.getDate("event_date").toLocalDate();
                 LocalTime start = rs.getTime("start_time").toLocalTime();
                 LocalTime end = rs.getTime("end_time").toLocalTime();
                 int seats = rs.getInt("seats");
 
-                ConvertEvent event = new ConvertEvent(name, date, start, end, seats);
+                ConvertEvent event = new ConvertEvent(id, name, date, start, end, seats);
                 existingEvents.add(event);
             }
 
@@ -40,7 +41,8 @@ public class DbManager {
         }
     }
 
-    public DbManager(String eventname, LocalDate eventdate, LocalTime starttime, LocalTime endtime, int seatcount) {
+    public DbManager(String eventname, LocalDate eventdate, LocalTime starttime, LocalTime endtime,
+            int seatcount) {
         this.eventname = eventname;
         this.eventdate = eventdate;
         this.starttime = starttime;

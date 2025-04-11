@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 
 public class AdminScreen {
     private static AddEvents addevents = new AddEvents();
+    private static MakeReservation makeReservation = new MakeReservation();
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Admin Screen");
@@ -70,7 +71,12 @@ public class AdminScreen {
             }
 
         });
-
+        makeReservationButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                makeReservation.main(null);
+            }
+        });
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.weighty = 0.2;
