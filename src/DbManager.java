@@ -12,10 +12,22 @@ public class DbManager {
     LocalTime starttime;
     LocalTime endtime;
     int seatcount;
+
+    String veiwername;
+    String veiwerphn;
+    String veiwermail;
+    String paytype;
     public List<ConvertEvent> existingEvents = new ArrayList<>();
 
     public DbManager() {
 
+    }
+
+    public DbManager(String veiwername, String veiwerphn, String veiwermail, String paytype) {
+        this.veiwermail = veiwermail;
+        this.veiwername = veiwername;
+        this.veiwerphn = veiwerphn;
+        this.paytype = paytype;
     }
 
     public void fetchdata() {
@@ -85,5 +97,32 @@ public class DbManager {
             System.err.println("Failed to insert data into the database.");
         }
 
+    }
+
+    public void insertViewer(int evid) throws SQLException {
+        Connection conn = DbConnection.getConnection();
+        String insertSQL = "INSERT INTO viewers (name, mail, phonenumber, paymenttype) VALUES (?, ?, ?, ?)";
+        String sql = "UPDATE events SET seats = seats - 1 WHERE id = ? AND seats > 0;";
+        System.out.println(evid);
+        try (PreparedStatement pstmt = conn.prepareStatement(insertSQL);
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, veiwername);
+            pstmt.setString(2, veiwermail);
+            pstmt.setString(3, veiwerphn);
+            pstmt.setString(4, paytype);
+            stmt.setInt(1, evid);
+            stmt.executeUpdate();
+            int rowsAffected = pstmt.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Viewer inserted successfully!");
+            } else {
+                System.out.println("Failed to insert viewer.");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

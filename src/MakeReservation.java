@@ -15,7 +15,6 @@ public class MakeReservation {
     private static ViewerData view = new ViewerData();
 
     public static void main(String[] args) {
-        System.out.println("bahsdsagdasgsif");
         JFrame frame = new JFrame("Make a Reservation");
         frame.setSize(800, 500);
         frame.setLocationRelativeTo(null);
@@ -51,15 +50,12 @@ public class MakeReservation {
         JButton selecButton = new JButton("Select event");
         gbc.gridy = 2;
         frame.add(selecButton, gbc);
-        System.out.println("BHAGaggagdvasdg");
         selecButton.addActionListener(e -> {
-            System.out.println("mai bhaggagaaa");
             String selected = (String) dropdown.getSelectedItem();
             if (selected != null && hs.containsKey(selected)) {
-                System.out.println("mai bhaga");
                 int id = hs.get(selected); // Event ID
                 int availseats = hs_seats.get(id); // Get available seats by event ID
-                view.main(availseats);
+                view.main(availseats, id);
             } else {
                 System.out.println("Please select a valid event.");
             }
