@@ -138,9 +138,6 @@ public class AddEvents {
                     LocalTime startTime = date1.toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
                     Date date2 = (Date) endTimeSpinner.getValue();
                     LocalTime endTime = date2.toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
-                    // LocalDate eventDate = (LocalDate) datespinner.getValue();
-                    // LocalDate startTime = (LocalDate) startTimeSpinner.getValue();
-                    // LocalDate endTime = (LocalDate) endTimeSpinner.getValue();
                     int seatCount = Integer.parseInt(seatscount.getText());
 
                     if (startTime.isAfter(endTime) || startTime.equals(endTime)) {

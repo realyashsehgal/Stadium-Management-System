@@ -7,12 +7,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-// yae admin screen hogi isme current active events with date and time show
-// honge and ek button hoga add events jo naya frame open krega jisme isme bhi
-// us addevents ki class hogi object banega call hogi wo iusme
-// ek or button rahega isme make reservation kyuki yae admin based application
-// hai to us button pe click hoga simialrly new class pe jayenge
-
 public class AdminScreen {
     private static AddEvents addevents = new AddEvents();
     private static MakeReservation makeReservation = new MakeReservation();
@@ -29,19 +23,6 @@ public class AdminScreen {
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
-
-        // Active Events Panel (Top Left)
-        // JPanel activeEventPanel = new JPanel(new BorderLayout());
-        // activeEventPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),
-        // "Active Events", TitledBorder.CENTER, TitledBorder.TOP));
-        // activeEventPanel.setPreferredSize(new Dimension(400, 100)); // Updated size
-
-        // // Adding ActiveEvents Table Inside This Panel
-        // ActiveEvents activeevents = new ActiveEvents();
-        // activeevents.setPreferredSize(new Dimension(400, 100)); // Restrict table
-        // size
-        // activeEventPanel.add(activeevents, BorderLayout.CENTER);
-
         // // Add to mainPanel
         gbc.gridx = 0;
         gbc.gridy = 0;

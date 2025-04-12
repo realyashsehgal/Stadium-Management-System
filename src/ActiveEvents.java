@@ -48,13 +48,3 @@ public class ActiveEvents extends JPanel {
         }
     }
 }
-
-// Set column headers
-// String[] columnNames = { "ID", "Event Name", "Date" };
-// tableModel.setColumnIdentifiers(columnNames);
-
-// Fetch data from DatabaseHelper
-// List<Object[]> events = DatabaseHelper.getActiveEvents();
-// for (Object[] event : events) {
-// tableModel.addRow(event);
-// }

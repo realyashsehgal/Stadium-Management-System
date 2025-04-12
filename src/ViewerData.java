@@ -11,9 +11,6 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 public class ViewerData {
-    // public static void main(String[] args) {
-    // main(10, 2);
-    // }
 
     public static void main(int avseats, int evid) {
         JFrame frame = new JFrame();
