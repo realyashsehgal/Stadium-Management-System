@@ -64,6 +64,10 @@ public class ViewerData {
                 String viewerphn = phonenumfield.getText();
                 String mailfield = emailfield.getText();
                 String selectedPayType = (String) paymentypedropdown.getSelectedItem();
+                if (selectedPayType == "Online") {
+                    PaymentGateAway pgw = new PaymentGateAway();
+                    pgw.gateWay();
+                }
                 System.out.println(veiwername + " " + viewerphn + " " + mailfield + " " + selectedPayType);
                 DbManager newviewer = new DbManager(veiwername, viewerphn, mailfield, selectedPayType);
                 try {
