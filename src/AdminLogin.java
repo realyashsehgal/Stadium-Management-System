@@ -19,7 +19,7 @@ public class AdminLogin extends JPanel {
         // Username label and text field
         JLabel userLabel = new JLabel("Username:");
         JTextField userField = new JTextField(15);
-
+        userLabel.setForeground(Color.white);
         gbc.gridx = 0;
         gbc.gridy = 0;
         this.add(userLabel, gbc);
@@ -29,7 +29,7 @@ public class AdminLogin extends JPanel {
         // Password label and password field
         JLabel passLabel = new JLabel("Password:");
         JPasswordField passField = new JPasswordField(15);
-
+        passLabel.setForeground(Color.white);
         gbc.gridx = 0;
         gbc.gridy = 1;
         this.add(passLabel, gbc);

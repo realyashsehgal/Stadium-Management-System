@@ -2,7 +2,6 @@ package src;
 
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,24 +17,28 @@ public class Main {
         headerLabel.setFont(new Font("Arial", Font.BOLD, 25));
         headerLabel.setForeground(Color.WHITE);
 
-        ImageIcon logo = new ImageIcon("image.png");
-        Image img = logo.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-        JLabel imgLabel = new JLabel(new ImageIcon(img));
-        imgLabel.setBorder(new EmptyBorder(0, 10, 0, 0));
+        // ImageIcon logo = new ImageIcon("image.png");
+        // Image img = logo.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+        // JLabel imgLabel = new JLabel(new ImageIcon(img));
+        // imgLabel.setBorder(new EmptyBorder(0, 10, 0, 0));
 
         JPanel headingPanel = new JPanel(new BorderLayout());
         headingPanel.setBackground(Color.BLUE);
         headingPanel.setPreferredSize(new Dimension(1000, 70));
-        headingPanel.add(imgLabel, BorderLayout.WEST);
+        // headingPanel.add(imgLabel, BorderLayout.WEST);
         headingPanel.add(headerLabel, BorderLayout.CENTER);
 
         // GridBagLayout main panel
-        JPanel mainPanel = new JPanel(new GridBagLayout());
+        ImagePanel mainPanel = new ImagePanel("src\\staduim.jpg"); // Use your image path here
+        mainPanel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5); // spacing
 
         // Login Panel
         AdminLogin loginPanel = new AdminLogin();
+        loginPanel.setOpaque(false);
+        loginPanel.setBackground(new Color(0, 0, 0, 0));
+        loginPanel.setForeground(Color.white);
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 0.5;
