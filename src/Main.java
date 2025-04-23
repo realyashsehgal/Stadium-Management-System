@@ -22,8 +22,7 @@ public class Main {
         // JLabel imgLabel = new JLabel(new ImageIcon(img));
         // imgLabel.setBorder(new EmptyBorder(0, 10, 0, 0));
 
-        JPanel headingPanel = new JPanel(new BorderLayout());
-        headingPanel.setBackground(Color.BLUE);
+        ImagePanel headingPanel = new ImagePanel("src\\pitch.png");
         headingPanel.setPreferredSize(new Dimension(1000, 70));
         // headingPanel.add(imgLabel, BorderLayout.WEST);
         headingPanel.add(headerLabel, BorderLayout.CENTER);
@@ -36,9 +35,9 @@ public class Main {
 
         // Login Panel
         AdminLogin loginPanel = new AdminLogin();
-        loginPanel.setOpaque(false);
+        loginPanel.setOpaque(true);
         loginPanel.setBackground(new Color(0, 0, 0, 0));
-        loginPanel.setForeground(Color.white);
+        loginPanel.setForeground(Color.WHITE);
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 0.5;
@@ -52,6 +51,8 @@ public class Main {
         evlist.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         ActiveEventPanel activeEventPanel = new ActiveEventPanel(500, 200);
+        activeEventPanel.setOpaque(false);
+        activeEventPanel.setBackground(new Color(0, 0, 0, 0));
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.weightx = 0.5;

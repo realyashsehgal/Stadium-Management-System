@@ -17,12 +17,23 @@ public class ActiveEvents extends JPanel {
         table.setPreferredScrollableViewportSize(new Dimension(740, 200));
         table.setFillsViewportHeight(true);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF); // Prevent auto resizing
+        // After creating JTable
+        table.setBackground(new Color(106, 153, 78));
+        table.setForeground(Color.WHITE);
+        table.setGridColor(new Color(56, 102, 65));
+
+        table.getTableHeader().setBackground(new Color(108, 88, 76));
+        table.getTableHeader().setForeground(Color.WHITE);
+
+        // Optional aesthetics
+        scrollPane.getViewport().setBackground(new Color(169, 132, 103));
+        this.setBackground(new Color(169, 132, 103));
 
         // Add scrollPane to panel
         add(scrollPane, BorderLayout.CENTER);
 
         // Set column headers
-        String[] columnNames = { "ID", "Event Name", "Date", "haha", "lala" };
+        String[] columnNames = { "Event Name", "Date", "Start Time", "End Time", "Total Seats" };
         tableModel.setColumnIdentifiers(columnNames);
 
         // Set fixed column widths

@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 
 public class AdminLogin extends JPanel {
     public AdminLogin() {
@@ -11,7 +12,11 @@ public class AdminLogin extends JPanel {
         // Setting layout for login panel
         this.setLayout(new GridBagLayout());
         this.setPreferredSize(new Dimension(500, 200)); // Setting panel size
-        this.setBorder(BorderFactory.createTitledBorder("Login")); // Adding a border with title
+        // this.setBorder(BorderFactory.createTitledBorder("Login")); // Adding a border
+        // with title
+        TitledBorder border = BorderFactory.createTitledBorder("Login");
+        border.setTitleColor(Color.WHITE); // Make the title white
+        this.setBorder(border);
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5); // Padding between components
