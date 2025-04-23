@@ -16,12 +16,21 @@ import javax.swing.text.DocumentFilter;
 public class AddEvents {
 
     public static void main(String[] Args) {
-        JFrame frame = new JFrame();
+        JFrame frame = new JFrame("Add New Event");
         frame.setSize(800, 500);
-        // frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
-        frame.setLayout(new GridBagLayout());
+        frame.setLayout(new BorderLayout()); // Changed layout to BorderLayout
 
+        JLabel headerLabel = new JLabel("Add new event", SwingConstants.CENTER);
+        headerLabel.setFont(new Font("Arial", Font.BOLD, 25));
+        headerLabel.setForeground(Color.WHITE);
+
+        ImagePanel headingPanel = new ImagePanel("src\\pitch.png");
+        headingPanel.setPreferredSize(new Dimension(1000, 70));
+        // headingPanel.add(imgLabel, BorderLayout.WEST);
+        headingPanel.add(headerLabel, BorderLayout.CENTER);
+
+        JPanel formPanel = new JPanel(new GridBagLayout()); // Form content stays here
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
 
@@ -30,9 +39,9 @@ public class AddEvents {
         JTextField eventnamefield = new JTextField(15);
         gbc.gridx = 0;
         gbc.gridy = 0;
-        frame.add(eventname, gbc);
-        gbc.gridy = 1;
-        frame.add(eventnamefield, gbc);
+        formPanel.add(eventname, gbc);
+        gbc.gridx = 1;
+        formPanel.add(eventnamefield, gbc);
 
         // Event LocalDate
         JLabel eventdate = new JLabel("Please enter the date of the event");
@@ -42,11 +51,11 @@ public class AddEvents {
         datespinner.setEditor(dateEditor);
         gbc.gridx = 2;
         gbc.gridy = 0;
-        frame.add(eventdate, gbc);
-        gbc.gridy = 1;
-        frame.add(datespinner, gbc);
+        formPanel.add(eventdate, gbc);
+        gbc.gridx = 3;
+        formPanel.add(datespinner, gbc);
 
-        // Event Time Label
+        // Event Time
         JLabel eventtime = new JLabel("Please enter the time for the event");
         JLabel startTimeLabel = new JLabel("Start Time:");
         SpinnerDateModel startTimeModel = new SpinnerDateModel();
@@ -62,15 +71,16 @@ public class AddEvents {
 
         gbc.gridx = 0;
         gbc.gridy = 4;
-        frame.add(eventtime, gbc);
+        formPanel.add(eventtime, gbc);
         gbc.gridy = 5;
-        frame.add(startTimeLabel, gbc);
+        formPanel.add(startTimeLabel, gbc);
+        gbc.gridx = 1;
+        formPanel.add(startTimeSpinner, gbc);
         gbc.gridy = 6;
-        frame.add(startTimeSpinner, gbc);
-        gbc.gridy = 7;
-        frame.add(endTimeLabel, gbc);
-        gbc.gridy = 8;
-        frame.add(endTimeSpinner, gbc);
+        gbc.gridx = 0;
+        formPanel.add(endTimeLabel, gbc);
+        gbc.gridx = 1;
+        formPanel.add(endTimeSpinner, gbc);
 
         // Seat Count
         JLabel seats = new JLabel("Please enter the number of seats available");
@@ -115,16 +125,22 @@ public class AddEvents {
 
         gbc.gridx = 2;
         gbc.gridy = 4;
-        frame.add(seats, gbc);
-        gbc.gridy = 5;
-        frame.add(seatscount, gbc);
+        formPanel.add(seats, gbc);
+        gbc.gridx = 3;
+        formPanel.add(seatscount, gbc);
 
-        // Add Button
-        JButton add = new JButton("Add event");
-        add.setPreferredSize(new Dimension(180, 100));
-        gbc.gridx = 1;
-        gbc.gridy = 9;
-        frame.add(add, gbc);
+        // Create the button
+        JButton add = new JButton("Add Event");
+        add.setPreferredSize(new Dimension(180, 60));
+
+        // Button Panel
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.add(add);
+
+        // Add components to frame
+        frame.add(headingPanel, BorderLayout.NORTH);
+        frame.add(formPanel, BorderLayout.CENTER);
+        frame.add(buttonPanel, BorderLayout.SOUTH);
 
         // Button Action
         add.addActionListener(new ActionListener() {
@@ -141,10 +157,10 @@ public class AddEvents {
                     int seatCount = Integer.parseInt(seatscount.getText());
 
                     if (startTime.isAfter(endTime) || startTime.equals(endTime)) {
-                        System.out.println(startTime + "   " + endTime);
                         JOptionPane.showMessageDialog(null, "Start time must be before end time!");
                         return;
                     }
+
                     DbManager newEvent = new DbManager(eventname, eventDate, startTime, endTime, seatCount);
 
                     if (newEvent.isTimeConflict()) {

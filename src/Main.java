@@ -17,11 +17,6 @@ public class Main {
         headerLabel.setFont(new Font("Arial", Font.BOLD, 25));
         headerLabel.setForeground(Color.WHITE);
 
-        // ImageIcon logo = new ImageIcon("image.png");
-        // Image img = logo.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-        // JLabel imgLabel = new JLabel(new ImageIcon(img));
-        // imgLabel.setBorder(new EmptyBorder(0, 10, 0, 0));
-
         ImagePanel headingPanel = new ImagePanel("src\\pitch.png");
         headingPanel.setPreferredSize(new Dimension(1000, 70));
         // headingPanel.add(imgLabel, BorderLayout.WEST);

@@ -18,7 +18,7 @@ public class AdminScreen {
         // frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Use GridBagLayout
-        JPanel mainPanel = new JPanel(new GridBagLayout());
+        ImagePanel mainPanel = new ImagePanel("src\\adminscreen.jpg");
         frame.add(mainPanel);
 
         GridBagConstraints gbc = new GridBagConstraints();
@@ -34,7 +34,8 @@ public class AdminScreen {
 
         // Buttons Panel (Below the Active Events Table)
         JPanel buttonpanel = new JPanel(new GridLayout(1, 2, 10, 10));
-
+        buttonpanel.setOpaque(false);
+        buttonpanel.setBackground(new Color(0, 0, 0, 0));
         JButton addEventButton = new JButton("Add Event");
         JButton makeReservationButton = new JButton("Make Reservation");
 

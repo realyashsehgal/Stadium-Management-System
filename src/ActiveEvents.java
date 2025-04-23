@@ -18,9 +18,9 @@ public class ActiveEvents extends JPanel {
         table.setFillsViewportHeight(true);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF); // Prevent auto resizing
         // After creating JTable
-        table.setBackground(new Color(106, 153, 78));
+        table.setBackground(new Color(106, 153, 78));// background
         table.setForeground(Color.WHITE);
-        table.setGridColor(new Color(56, 102, 65));
+        table.setGridColor(new Color(56, 102, 65));// grid color
 
         table.getTableHeader().setBackground(new Color(108, 88, 76));
         table.getTableHeader().setForeground(Color.WHITE);
