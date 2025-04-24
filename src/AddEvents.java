@@ -38,6 +38,7 @@ public class AddEvents {
 
         // Event Name
         JLabel eventname = new JLabel("Please enter the name of the event");
+        eventname.setForeground(new Color(255, 231, 122));
         JTextField eventnamefield = new JTextField(15);
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -47,6 +48,7 @@ public class AddEvents {
 
         // Event LocalDate
         JLabel eventdate = new JLabel("Please enter the date of the event");
+        eventdate.setForeground(new Color(255, 231, 122));
         SpinnerDateModel model = new SpinnerDateModel(new Date(), null, null, java.util.Calendar.DAY_OF_MONTH);
         JSpinner datespinner = new JSpinner(model);
         JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(datespinner, "yyyy-MM-dd");
@@ -59,13 +61,16 @@ public class AddEvents {
 
         // Event Time
         JLabel eventtime = new JLabel("Please enter the time for the event");
+        eventtime.setForeground(new Color(255, 231, 122));
         JLabel startTimeLabel = new JLabel("Start Time:");
+        startTimeLabel.setForeground(new Color(255, 231, 122));
         SpinnerDateModel startTimeModel = new SpinnerDateModel();
         JSpinner startTimeSpinner = new JSpinner(startTimeModel);
         JSpinner.DateEditor startTimeEditor = new JSpinner.DateEditor(startTimeSpinner, "HH:mm");
         startTimeSpinner.setEditor(startTimeEditor);
 
         JLabel endTimeLabel = new JLabel("End Time:");
+        endTimeLabel.setForeground(new Color(255, 231, 122));
         SpinnerDateModel endTimeModel = new SpinnerDateModel();
         JSpinner endTimeSpinner = new JSpinner(endTimeModel);
         JSpinner.DateEditor endTimeEditor = new JSpinner.DateEditor(endTimeSpinner, "HH:mm");
@@ -86,6 +91,7 @@ public class AddEvents {
 
         // Seat Count
         JLabel seats = new JLabel("Please enter the number of seats available");
+        seats.setForeground(new Color(255, 231, 122));
         JTextField seatscount = new JTextField(5);
         ((AbstractDocument) seatscount.getDocument()).setDocumentFilter(new DocumentFilter() {
             @Override
