@@ -19,6 +19,7 @@ public class MakeReservation {
 
     public void main() {
         JFrame frame = new JFrame("Make a Reservation");
+        frame.setResizable(false);
         frame.setSize(800, 500);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -17,6 +17,7 @@ public class AddEvents {
 
     public void main() {
         JFrame frame = new JFrame("Add New Event");
+        frame.setResizable(false);
         frame.setSize(800, 500);
         frame.setLocationRelativeTo(null);
         frame.setLayout(new BorderLayout()); // Changed layout to BorderLayout

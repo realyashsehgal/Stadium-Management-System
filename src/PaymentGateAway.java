@@ -17,6 +17,7 @@ public class PaymentGateAway {
 
     void gateWay() {
         JFrame frame = new JFrame("Payment Gateway");
+        frame.setResizable(false);
         frame.setSize(900, 600);
         frame.setLocationRelativeTo(null);
         frame.setLayout(new BorderLayout());

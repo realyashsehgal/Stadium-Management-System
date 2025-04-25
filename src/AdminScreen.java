@@ -13,6 +13,7 @@ public class AdminScreen {
 
     public void main(String[] args) {
         JFrame frame = new JFrame("Admin Screen");
+        frame.setResizable(false);
         frame.setSize(800, 600); // Increased size to fit the table properly
         frame.setLocationRelativeTo(null);
         // frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

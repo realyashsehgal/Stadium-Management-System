@@ -18,6 +18,7 @@ public class Main {
         }
         // Frame setup
         JFrame frame = new JFrame("Stadium Management System");
+        frame.setResizable(false);
         frame.setSize(900, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);

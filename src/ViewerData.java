@@ -17,6 +17,7 @@ public class ViewerData {
 
     public void main(int avseats, int evid) {
         JFrame frame = new JFrame();
+        frame.setResizable(false);
         frame.setSize(900, 600);
         frame.setLocationRelativeTo(null);
         frame.setLayout(new BorderLayout());
