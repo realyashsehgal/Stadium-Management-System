@@ -172,10 +172,11 @@ public class AddEvents {
                     DbManager newEvent = new DbManager(eventname, eventDate, startTime, endTime, seatCount);
 
                     if (newEvent.isTimeConflict()) {
-                        JOptionPane.showMessageDialog(null, "⚠️ Time conflict: Another event overlaps!");
+                        JOptionPane.showMessageDialog(null, " Time conflict: Another event overlaps!");
                     } else {
                         newEvent.insertEvent();
-                        JOptionPane.showMessageDialog(null, "🎉 Event added successfully!");
+                        JOptionPane.showMessageDialog(null, " Event added successfully!");
+                        frame.dispose();
                     }
                 } catch (Exception ex) {
                     ex.printStackTrace();

@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -32,8 +34,21 @@ public class ViewerData {
         gbc.gridy = 1;
         mainpanel.add(usernamefield, gbc);
 
-        JLabel phonenum = new JLabel("Please enter you phone number");
-        JTextField phonenumfield = new JTextField(10);
+        JLabel phonenum = new JLabel("Please enter your phone number");
+        JTextField phonenumfield = new JTextField();
+        phonenumfield.setColumns(10);
+        phonenumfield.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                String text = phonenumfield.getText();
+
+                // Only allow digits, block input if already 10 characters
+                if (!Character.isDigit(c) || text.length() >= 10) {
+                    e.consume(); // Ignore this keypress
+                }
+            }
+        });
         gbc.gridx = 2;
         gbc.gridy = 0;
         mainpanel.add(phonenum, gbc);
@@ -68,14 +83,15 @@ public class ViewerData {
                 String viewerphn = phonenumfield.getText();
                 String mailfield = emailfield.getText();
                 String selectedPayType = (String) paymentypedropdown.getSelectedItem();
-                if (selectedPayType == "Online") {
+                if (selectedPayType.equals("Online")) {
                     PaymentGateAway pgw = new PaymentGateAway();
                     pgw.gateWay();
+                    frame.dispose();
                 }
-                System.out.println(veiwername + " " + viewerphn + " " + mailfield + " " + selectedPayType);
                 DbManager newviewer = new DbManager(veiwername, viewerphn, mailfield, selectedPayType);
                 try {
                     newviewer.insertViewer(evid);
+                    frame.dispose();
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                     System.out.println("Error inserting viewer data: " + ex.getMessage());

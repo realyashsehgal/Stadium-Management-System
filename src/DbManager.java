@@ -64,13 +64,9 @@ public class DbManager {
     }
 
     public boolean isTimeConflict() {
-        System.out.println("i ran");
         fetchdata();
-        System.out.println(eventdate);
         for (ConvertEvent obj : existingEvents) {
-            System.out.print(obj.getDate());
             if (eventdate.equals(obj.getDate())) {
-                System.out.println("tryyy");
                 return true;
             }
         }
@@ -90,7 +86,6 @@ public class DbManager {
             stmt.setInt(5, seatcount);
 
             int rows = stmt.executeUpdate();
-            System.out.println(rows + " row(s) inserted successfully.");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -103,7 +98,6 @@ public class DbManager {
         Connection conn = DbConnection.getConnection();
         String insertSQL = "INSERT INTO viewers (name, mail, phonenumber, paymenttype) VALUES (?, ?, ?, ?)";
         String sql = "UPDATE events SET seats = seats - 1 WHERE id = ? AND seats > 0;";
-        System.out.println(evid);
         try (PreparedStatement pstmt = conn.prepareStatement(insertSQL);
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -116,9 +110,7 @@ public class DbManager {
             int rowsAffected = pstmt.executeUpdate();
 
             if (rowsAffected > 0) {
-                System.out.println("Viewer inserted successfully!");
             } else {
-                System.out.println("Failed to insert viewer.");
             }
 
         } catch (SQLException e) {

@@ -9,7 +9,12 @@ public class ActiveEvents extends JPanel {
         setLayout(new BorderLayout());
 
         // Table model with column names
-        DefaultTableModel tableModel = new DefaultTableModel();
+        DefaultTableModel tableModel = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         JTable table = new JTable(tableModel);
         JScrollPane scrollPane = new JScrollPane(table);
 
@@ -54,7 +59,6 @@ public class ActiveEvents extends JPanel {
                     event.getEnd(),
                     event.getSeats()
             };
-            System.out.println(rowData.toString());
             tableModel.addRow(rowData);
         }
     }

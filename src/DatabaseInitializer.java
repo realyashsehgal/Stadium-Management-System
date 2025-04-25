@@ -19,7 +19,7 @@ public class DatabaseInitializer {
             Connection conn = DriverManager.getConnection(url, user, password);
             Statement stmt = conn.createStatement();
 
-            stmt.executeUpdate("CREATE DATABASE IF NOT EXISTS LMS");
+            stmt.executeUpdate("CREATE DATABASE IF NOT EXISTS minor_project");
 
             conn = DbConnection.getConnection();
             stmt = conn.createStatement();
@@ -34,7 +34,7 @@ public class DatabaseInitializer {
                             "seats int)");
 
             stmt.executeUpdate(
-                    "CREATE TABLE IF NOT EXISTS events (" +
+                    "CREATE TABLE IF NOT EXISTS viewers (" +
                             "id int PRIMARY KEY AUTO_INCREMENT, " +
                             "name VARCHAR(100), " +
                             "mail varchar(100), " +

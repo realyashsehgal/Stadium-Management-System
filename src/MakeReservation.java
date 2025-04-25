@@ -64,6 +64,7 @@ public class MakeReservation {
                 int id = hs.get(selected); // Event ID
                 int availseats = hs_seats.get(id); // Get available seats by event ID
                 view.main(availseats, id);
+                frame.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Please select a valid event");
             }
