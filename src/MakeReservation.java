@@ -11,12 +11,13 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class MakeReservation {
 
     private static ViewerData view = new ViewerData();
 
-    public static void main(String[] args) {
+    public void main() {
         JFrame frame = new JFrame("Make a Reservation");
         frame.setSize(800, 500);
         frame.setLocationRelativeTo(null);
@@ -64,7 +65,7 @@ public class MakeReservation {
                 int availseats = hs_seats.get(id); // Get available seats by event ID
                 view.main(availseats, id);
             } else {
-                System.out.println("Please select a valid event.");
+                JOptionPane.showMessageDialog(null, "Please select a valid event");
             }
         });
         frame.add(mainpanel, BorderLayout.CENTER);

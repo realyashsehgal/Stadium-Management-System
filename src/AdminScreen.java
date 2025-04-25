@@ -11,7 +11,7 @@ public class AdminScreen {
     private static AddEvents addevents = new AddEvents();
     private static MakeReservation makeReservation = new MakeReservation();
 
-    public static void main(String[] args) {
+    public void main(String[] args) {
         JFrame frame = new JFrame("Admin Screen");
         frame.setSize(800, 600); // Increased size to fit the table properly
         frame.setLocationRelativeTo(null);
@@ -49,14 +49,14 @@ public class AdminScreen {
         addEventButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                addevents.main(null); // Call the main method using the instance
+                addevents.main(); // Call the main method using the instance
             }
 
         });
         makeReservationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                makeReservation.main(null);
+                makeReservation.main();
             }
         });
         gbc.gridx = 0;

@@ -15,7 +15,7 @@ import javax.swing.text.DocumentFilter;
 
 public class AddEvents {
 
-    public static void main(String[] Args) {
+    public void main() {
         JFrame frame = new JFrame("Add New Event");
         frame.setSize(800, 500);
         frame.setLocationRelativeTo(null);

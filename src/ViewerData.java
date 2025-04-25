@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 
 public class ViewerData {
 
-    public static void main(int avseats, int evid) {
+    public void main(int avseats, int evid) {
         JFrame frame = new JFrame();
         frame.setSize(900, 600);
         frame.setLocationRelativeTo(null);

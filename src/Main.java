@@ -1,10 +1,21 @@
 package src;
 
 import java.awt.*;
+import java.io.IOException;
 import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
+        try {
+            DbConnection.getCreds();
+            DatabaseInitializer.getCreds();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (DatabaseInitializer.initialize() == 0) {
+            return;
+        }
         // Frame setup
         JFrame frame = new JFrame("Stadium Management System");
         frame.setSize(900, 600);
