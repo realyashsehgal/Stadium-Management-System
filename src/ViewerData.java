@@ -1,5 +1,6 @@
 package src;
 
+import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -16,7 +17,10 @@ public class ViewerData {
         JFrame frame = new JFrame();
         frame.setSize(900, 600);
         frame.setLocationRelativeTo(null);
-        frame.setLayout(new GridBagLayout());
+        frame.setLayout(new BorderLayout());
+
+        ImagePanel mainpanel = new ImagePanel("imgs\\stands.png");
+        mainpanel.setLayout(new GridBagLayout());
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
@@ -24,39 +28,39 @@ public class ViewerData {
         JTextField usernamefield = new JTextField(20);
         gbc.gridx = 0;
         gbc.gridy = 0;
-        frame.add(username, gbc);
+        mainpanel.add(username, gbc);
         gbc.gridy = 1;
-        frame.add(usernamefield, gbc);
+        mainpanel.add(usernamefield, gbc);
 
         JLabel phonenum = new JLabel("Please enter you phone number");
         JTextField phonenumfield = new JTextField(10);
         gbc.gridx = 2;
         gbc.gridy = 0;
-        frame.add(phonenum, gbc);
+        mainpanel.add(phonenum, gbc);
         gbc.gridy = 1;
-        frame.add(phonenumfield, gbc);
+        mainpanel.add(phonenumfield, gbc);
 
         JLabel email = new JLabel("Please enter your email");
         JTextField emailfield = new JTextField(10);
         gbc.gridx = 0;
         gbc.gridy = 2;
-        frame.add(email, gbc);
+        mainpanel.add(email, gbc);
         gbc.gridy = 3;
-        frame.add(emailfield, gbc);
+        mainpanel.add(emailfield, gbc);
 
         String[] paytype = { "Cash", "Online" };
         JLabel paymenttype = new JLabel("Please select a payment type");
         gbc.gridx = 2;
         gbc.gridy = 2;
-        frame.add(paymenttype, gbc);
+        mainpanel.add(paymenttype, gbc);
         JComboBox<String> paymentypedropdown = new JComboBox<>(paytype);
         gbc.gridy = 3;
-        frame.add(paymentypedropdown, gbc);
+        mainpanel.add(paymentypedropdown, gbc);
 
         JButton addviewer = new JButton("Book seats");
         gbc.gridx = 1;
         gbc.gridy = 4;
-        frame.add(addviewer, gbc);
+        mainpanel.add(addviewer, gbc);
         addviewer.addActionListener(e -> {
             if (avseats > 0) {
 
@@ -78,7 +82,7 @@ public class ViewerData {
                 }
             }
         });
-
+        frame.add(mainpanel, BorderLayout.CENTER);
         frame.setVisible(true);
 
     }

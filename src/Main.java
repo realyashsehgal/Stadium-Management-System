@@ -17,13 +17,13 @@ public class Main {
         headerLabel.setFont(new Font("Arial", Font.BOLD, 25));
         headerLabel.setForeground(Color.WHITE);
 
-        ImagePanel headingPanel = new ImagePanel("src\\pitch.png");
+        ImagePanel headingPanel = new ImagePanel("imgs\\pitch.png");
         headingPanel.setPreferredSize(new Dimension(1000, 70));
         // headingPanel.add(imgLabel, BorderLayout.WEST);
         headingPanel.add(headerLabel, BorderLayout.CENTER);
 
         // GridBagLayout main panel
-        ImagePanel mainPanel = new ImagePanel("src\\staduim.jpg"); // Use your image path here
+        ImagePanel mainPanel = new ImagePanel("imgs\\staduim.jpg"); // Use your image path here
         mainPanel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5); // spacing

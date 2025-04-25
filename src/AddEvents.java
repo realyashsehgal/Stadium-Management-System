@@ -25,12 +25,12 @@ public class AddEvents {
         headerLabel.setFont(new Font("Arial", Font.BOLD, 25));
         headerLabel.setForeground(Color.WHITE);
 
-        ImagePanel headingPanel = new ImagePanel("src\\hed.png");
+        ImagePanel headingPanel = new ImagePanel("imgs\\hed.png");
         headingPanel.setPreferredSize(new Dimension(1000, 70));
         // headingPanel.add(imgLabel, BorderLayout.WEST);
         headingPanel.add(headerLabel, BorderLayout.CENTER);
 
-        ImagePanel formPanel = new ImagePanel("src\\yel.png"); // Form content stays
+        ImagePanel formPanel = new ImagePanel("imgs\\yel.png"); // Form content stays
         // here
         formPanel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -142,7 +142,7 @@ public class AddEvents {
         add.setPreferredSize(new Dimension(180, 50));
 
         // Button Panel
-        ImagePanel buttonPanel = new ImagePanel("src\\bot.png");
+        ImagePanel buttonPanel = new ImagePanel("imgs\\bot.png");
         buttonPanel.add(add);
 
         // Add components to frame

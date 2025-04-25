@@ -1,5 +1,7 @@
 package src;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -19,7 +21,10 @@ public class MakeReservation {
         frame.setSize(800, 500);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new GridBagLayout());
+        frame.setLayout(new BorderLayout());
+
+        ImagePanel mainpanel = new ImagePanel("imgs\\makereserv.png");
+        mainpanel.setLayout(new GridBagLayout());
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
@@ -27,7 +32,9 @@ public class MakeReservation {
         gbc.gridy = 0;
 
         JLabel selectEventLabel = new JLabel("Select from the following events:");
-        frame.add(selectEventLabel, gbc);
+
+        selectEventLabel.setForeground(new Color(255, 231, 122));
+        mainpanel.add(selectEventLabel, gbc);
 
         // Dropdown menu for event selection
         DbManager db = new DbManager();
@@ -45,11 +52,11 @@ public class MakeReservation {
         JComboBox<String> dropdown = new JComboBox<>(events.toArray(new String[0]));
 
         gbc.gridy = 1;
-        frame.add(dropdown, gbc);
+        mainpanel.add(dropdown, gbc);
 
         JButton selecButton = new JButton("Select event");
         gbc.gridy = 2;
-        frame.add(selecButton, gbc);
+        mainpanel.add(selecButton, gbc);
         selecButton.addActionListener(e -> {
             String selected = (String) dropdown.getSelectedItem();
             if (selected != null && hs.containsKey(selected)) {
@@ -60,7 +67,7 @@ public class MakeReservation {
                 System.out.println("Please select a valid event.");
             }
         });
-
+        frame.add(mainpanel, BorderLayout.CENTER);
         frame.setVisible(true);
     }
 }

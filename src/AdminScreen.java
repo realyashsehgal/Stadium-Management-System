@@ -18,7 +18,7 @@ public class AdminScreen {
         // frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Use GridBagLayout
-        ImagePanel mainPanel = new ImagePanel("src\\adminscreen.jpg");
+        ImagePanel mainPanel = new ImagePanel("imgs\\adminscreen.jpg");
         frame.add(mainPanel);
 
         GridBagConstraints gbc = new GridBagConstraints();
